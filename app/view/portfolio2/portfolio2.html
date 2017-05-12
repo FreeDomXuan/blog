@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+	<title> {$title} </title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="description" content="问君随风-张宗轩的个人博客 这里是张宗轩的个人博客，时不时更新一些学习经历或者其他的文章，欢迎来访~" />
+	<meta name="keywords" content="张宗轩-个人博客,问君随风,zhangzongxuan.com,www.zhangzongxuan.com,张宗轩" />
+	<!-- CSS -->	
+	<link href='public/fonts/sansation.css' rel="stylesheet" type="text/css" />	<!-- Get any font from here easily: http://www.google.com/webfonts -->	
+	<link href="public/css/style.css" rel="stylesheet" type="text/css" />	
+	<link href="public/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
+	<link href="public/css/nivo-slider.css" rel="stylesheet" type="text/css" />
+	<link href="public/css/styler-farbtastic.css" rel="stylesheet" type="text/css" />
+	
+	<!-- UPDATE BROWSER WARNING IF IE 7 OR LOWER -->
+	<!--[if lt IE 8]>
+	<link href="css/stop_ie.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!-- JAVASCRIPTS -->
+	<script type="text/javascript" src="public/js/jquery.min.js"></script>	
+	<script type="text/javascript" src="public/js/jquery-ui-1.8.17.custom.min.js"></script>			
+	<script type="text/javascript" src="public/fancybox/jquery.fancybox-1.3.4.pack.js"></script>	
+	<script type="text/javascript" src="public/js/jquery.nivo.slider.js"></script>			
+	<script type="text/javascript" src="public/js/jquery.bgslider.js"></script>	
+	<script type="text/javascript" src="public/js/preloader.js"></script>
+	<script type="text/javascript" src="public/js/farbtastic.js"></script>
+	<script type="text/javascript" src="public/js/basic.js"></script>
+	<script type="text/javascript" src="public/js/styler.js"></script>
+	<script type="text/javascript" src="public/js/contact_form.js"></script>
+	<script type="text/javascript" src="public/js/jquery.quicksand.js"></script>
+	<script type="text/javascript" src="public/js/quicksand_call.js"></script>
+		
+</head>
+<body>
+<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#06C&amp;text=分享到&amp;pophcol=3"></script>
+              
+	<!-- SITE WRAPPER -->
+	<div id="wrapper">
+	
+		<!-- PAGE WITH CONTENTS -->
+		<div id="page">
+			<div id="content">
+							
+				<h1>TRAVEL - 问君随风</h1>
+				
+				<div class="hr"></div>
+						
+				<!-- PORTFOLIO ITEMS -->
+				<ul class="portfolio-2c">
+
+				{(foreach) $pics as $k => $v}
+					<li data-id="id-{$v['tid']}" data-type="photos">
+						<!-- ITEM THUMB -->
+						<div class="thumb">
+							<a href="{$v['photo']}" class="fancybox">	
+							<span class="imghover_2c_pfolio"></span>
+							<img src="{$v['photo']}" alt="" />
+							</a>			
+						</div>						
+						<!-- ITEM TITLE -->
+						<h1>{$v['introduce']}</h1>
+						<!-- ITEM DESCRIPTION -->
+						<p>{$v['says']}</p>
+					</li>
+				{/(foreach)}
+
+				</ul><!-- .portfolio-2c ends -->					
+				
+				
+				<div class="hr"></div>
+			
+
+				<p style="text-align:center">
+					<a href="{$pages['first']}">首&nbsp;页</a>&nbsp;&nbsp;&nbsp;
+					<a href="{$pages['prev']}">上一页</a>&nbsp;&nbsp;&nbsp;
+					<a href="{$pages['next']}">下一页</a>&nbsp;&nbsp;&nbsp;
+					<a href="{$pages['end']}">尾&nbsp;页</a>
+				</p>
+				
+			</div><!-- #content ends -->	
+		</div><!-- #page ends -->
+			
+		
+				<!-- SIDEBAR -->
+		<div id="sidebar">	
+			<div id="sidebar-color"></div>		<!-- SIDEBAR COLOR LAYER -->
+			<div id="sidebar-border"></div>		<!-- SIDEBAR BORDER LAYER -->
+			<div id="sidebar-light"></div>		<!-- SIDEBAR RADIAL GRADIENT LIGHT LAYER -->
+			<div id="sidebar-texture"></div>	<!-- SIDEBAR TEXTURE LAYER -->
+			
+			<!-- SIDEBAR CONTENT LAYER -->
+			<div id="sidebar-content">	
+			
+				<!-- LOGO -->
+				<div id="logo">
+					<a href="index.php"><img src="public/images/logo.png" alt="" /></a>
+				</div>
+					
+				<!-- MENU -->
+				<ul id="menu">
+					<li><a href="index.php">HOME</a></li>
+					<li><a href="index.php?m=blog1&a=blog1">BLOG</a>
+						<ul>
+							<li><a href="index.php?m=blog1&a=blog1">TECHNOLOGY</a></li>
+							<li><a href="index.php?m=blog2&a=blog2">OTHERS</a></li>
+						</ul>
+					</li>
+					<li  class="current"><a href="index.php?m=portfolio3&a=portfolio3">PORTFOLIO</a>
+						<ul>
+							<li><a href="index.php?m=portfolio3&a=portfolio3">DYNAMIC</a></li>
+							<li><a href="index.php?m=portfolio2&a=portfolio2">TRAVEL</a></li>							
+						</ul>
+					</li>
+					<li><a href="index.php?m=gallery&a=gallery">GALLERY</a></li>
+				</ul>
+						
+			</div><!-- #sidebar-content ends -->	
+
+			<!-- COPYRIGHT TEXT -->
+			<p id="copyright"><a href="#">晋ICP备17000958号</a></p>
+			
+			
+		</div><!-- #sidebar ends -->		
+					
+	</div><!-- #wrapper ends -->
+
+	<!-- BACKGROUND SLIDER -->
+	<div id="bg_slider">	
+		<img src="public/images/bgslider-1.jpg" alt="" />
+		<img src="public/images/bgslider-2.jpg" alt="" />
+		<img src="public/images/bgslider-3.jpg" alt="" />
+	</div>
+
+</body>
+</html>

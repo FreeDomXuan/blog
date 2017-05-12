@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="public/css/pintuer.css">
+<link rel="stylesheet" href="public/css/admin.css">
+<script src="public/js/jquerys.js"></script>
+<script src="public/js/pintuer.js"></script>
+<link rel="stylesheet" href="public/editor/css/editormd.css" />
+  <script src="public/editor/js/jquery.min.js"></script>
+  <script src="public/editor/editormd.min.js"></script>
+
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="index.php?m=admin&a=addpic" enctype='multipart/form-data'>  
+      <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />  
+      <input type="hidden" name="add" value="123"/>
+      <div class="form-group">
+        <div class="label">
+          <label>标题：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>图片：</label>
+        </div>
+        <div class="field">
+           <input type="file" name="icon" />
+        </div>
+      </div>     
+
+        <div class="form-group">
+          <div class="label">
+            <label>分类标题：</label>
+          </div>
+          <div class="field">
+            <select name="type" class="input w50">
+              <option value="0">请选择分类</option>
+              <option value="0">DYNAMIC</option>
+              <option value="1">TRAVEL</option>
+            </select>
+            <div class="tips"></div>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <div class="label">
+          <label>描述：</label>
+        </div>
+        <div class="field">
+          <textarea class="input" name="note" style=" height:90px;"></textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+
+    <div class="form-group">
+        <div class="label">
+          <label>说点什么：</label>
+        </div>
+        <div class="field">
+          <textarea class="input" name="says" style=" height:90px;"></textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+     
+      <div class="clear"></div>
+      
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body></html>

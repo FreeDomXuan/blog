@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title> {$title} </title>
+	<meta name="baidu-site-verification" content="v12JVL8OqP" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="description" content="问君随风-张宗轩的个人博客 这里是张宗轩的个人博客，时不时更新一些学习经历或者其他的文章，欢迎来访~" />
+	<meta name="keywords" content="张宗轩-个人博客,问君随风,zhangzongxuan.com,www.zhangzongxuan.com,张宗轩" />
+<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+	<!-- CSS -->	
+	<link href='public/fonts/sansation.css' rel="stylesheet" type="text/css" />	<!-- Get any font from here easily: http://www.google.com/webfonts -->	
+	<link href="public/css/style.css" rel="stylesheet" type="text/css" />	
+	<link href="public/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
+	<link href="public/css/nivo-slider.css" rel="stylesheet" type="text/css" />
+	<link href="public/css/styler-farbtastic.css" rel="stylesheet" type="text/css" />
+
+	<!-- JAVASCRIPTS -->
+	<script type="text/javascript" src="public/js/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="public/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript" src="public/js/jquery.nivo.slider.js"></script>			
+	<script type="text/javascript" src="public/js/jquery.bgslider.js"></script>
+	<script type="text/javascript" src="public/js/preloader.js"></script>
+	<script type="text/javascript" src="public/js/farbtastic.js"></script>
+	<script type="text/javascript" src="public/js/basic.js"></script>
+	<script type="text/javascript" src="public/js/styler.js"></script>
+		
+	<!-- PAGE OPENING ANIMATION -->
+	<script type="text/javascript">		
+	
+	//PAGE IS CLOSED ON START
+	jQuery(document).ready(function(){
+		jQuery('#page').css({'display':'inline','width':'300px','overflow':'hidden','margin-right':'340px'});
+		jQuery('#sidebar').css({'margin-left':'326px'});	
+	});
+	
+	//WHEN ALL ELEMENTS ARE LOADED
+	jQuery(window).load(
+		function() {			
+			jQuery('#hp_preloader').delay(800).animate({'opacity':'0'},1400,function(){
+				
+				//HOMEPAGE NIVO SLIDER STARTS
+				
+				jQuery('#slider-nivo').nivoSlider({
+					controlNav:true,
+					controlNavThumbs:false,			
+					keyboardNav:false,
+					pauseOnHover:false,
+					prevText:'',			
+					nextText:'',
+					effect:'fade',
+					animSpeed:300,
+					pauseTime:4000
+				});
+				
+				//REMOVE LOADING 
+				jQuery(this).remove();
+					
+				//PAGE OPENING ANIMATION	
+				jQuery('#sidebar').delay(800).animate({'margin-left':'0px'},2100);		
+				jQuery('#page').delay(800).animate({'margin-right':'0px','width':'666px'},2100);	
+			});				
+		}
+	);			
+	</script>
+		
+</head>
+<body>
+	<!-- PAGE LOADING -->
+	<div id="hp_preloader"></div>
+
+	<!-- SITE WRAPPER -->
+	<div id="wrapper">
+	
+		<!-- PAGE WITH CONTENTS -->
+		<div id="page">
+			<div id="content">
+			
+				<!-- NIVO SLIDER -->
+				<div class="slider-nivo-holder">
+					<div id="slider-nivo">
+						{(foreach) $pops as $k => $v}
+						<a href="index.php?m=post&a=post&id={$v['bid']}">
+							<img src="{$v['pic']}" title="{$v['title']}" width=582px height=312px/>
+						</a>
+						{/(foreach)}
+					</div>
+				</div>
+		
+				<!-- WELCOME TEXT -->
+				<h4 style="text-align: center;">这里是张宗轩的个人博客，欢迎来访~欢迎转载~</h3>
+				
+				<!-- ELEGANT HORIZONTAL LINE -->
+				<div class="hr"></div>
+				
+				<!-- FEATURE TEXTS WITH SMALL ICONS -->
+				<div class="small_icons">
+					<div class="small_icon-img"><img src="public/images/icon_list1.png" alt="" /></div>
+					<p class="small_icon-text">
+						哥们是科大的，<br>
+						专业是电子的。<br>
+						学习是凑合的，<br>
+						挂科是暂无的。<br>
+						成就是不大的，<br>
+						希望是还有的。<br>
+					</p>
+				</div>
+
+				<div class="small_icons">
+					<div class="small_icon-img"><img src="public/images/icon_list2.png" alt="" /></div>
+					<p class="small_icon-text">
+						认生是常有的，<br>
+						话多是公认的。<br>
+						精神是正常的，<br>
+						行为是奇特的。<br>
+						失眠是经常的，<br>
+						熬夜是习惯的。<br>
+					</p>
+				</div>
+				
+				<div class="small_icons">
+					<div class="small_icon-img"><img src="public/images/icon_list5.png" alt="" /></div>
+					<p class="small_icon-text">
+						梦想是美丽的，<br>
+						现实是荒凉的。<br>
+						开始是郁闷的，<br>
+						后来是麻木的。<br>
+						介绍是巨长的，<br>
+						写着是挺累的。<br>
+					</p>
+				</div>
+				
+				<!-- SIMPLE HORIZONTAL LINE -->
+				<div class="hr"></div>
+
+				<h4 style="text-align: center;">小伙伴们</h3>
+				{(foreach) $link as $key => $val}
+				<div class="small_icons">
+					<div class="small_icon-img"><img src="{$val['logo']}" alt="" /></div>
+					<p class="small_icon-title"><a href="{$val['url']}" target="_blank">{$val['linkname']}</a></p>
+					<p>{$val['description']}</p>
+				</div>
+				{/(foreach)}
+				
+
+
+<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#06C&amp;text=分享到&amp;pophcol=3"></script>
+              
+
+			</div><!-- #content ends -->	
+
+		</div><!-- #page ends -->
+		
+
+		<!-- SIDEBAR -->
+		<div id="sidebar">	
+			<div id="sidebar-color"></div>		<!-- SIDEBAR COLOR LAYER -->
+			<div id="sidebar-border"></div>		<!-- SIDEBAR BORDER LAYER -->
+			<div id="sidebar-light"></div>		<!-- SIDEBAR RADIAL GRADIENT LIGHT LAYER -->
+			<div id="sidebar-texture"></div>	<!-- SIDEBAR TEXTURE LAYER -->
+			
+			<!-- SIDEBAR CONTENT LAYER -->
+			<div id="sidebar-content">	
+			
+				<!-- LOGO -->
+				<div id="logo">
+					<img src="public/images/logo.png" usemap="#map"/>
+					<map name="map" id="map">
+						<area shape="rect" coords="0,0,30,30" href="index.php?m=admin&a=login" />
+					</map>	
+				</div>
+					
+				<!-- MENU -->
+				<ul id="menu">
+					<li class="current"><a href="index.php">HOME</a></li>
+					<li><a href="index.php?m=blog1&a=blog1">BLOG</a>
+						<ul>
+							<li><a href="index.php?m=blog1&a=blog1">TECHNOLOGY</a></li>
+							<li><a href="index.php?m=blog2&a=blog2">OTHERS</a></li>
+						</ul>
+					</li>
+					<li><a href="index.php?m=portfolio3&a=portfolio3">PORTFOLIO</a>
+						<ul>
+							<li><a href="index.php?m=portfolio3&a=portfolio3">DYNAMIC</a></li>
+							<li><a href="index.php?m=portfolio2&a=portfolio2">TRAVEL</a></li>							
+						</ul>
+					</li>
+					<li><a href="index.php?m=gallery&a=gallery">GALLERY</a></li>
+				</ul>
+						
+			</div><!-- #sidebar-content ends -->	
+
+			<!-- COPYRIGHT TEXT -->
+			<p id="copyright"><a href="#">晋ICP备17000958号</a></p>
+			
+			
+		</div><!-- #sidebar ends -->			
+					
+	</div><!-- #wrapper ends -->
+
+
+
+	<!-- BACKGROUND SLIDER -->
+	<div id="bg_slider">	
+		<img src="public/images/bgslider-1.jpg" />
+		<img src="public/images/bgslider-2.jpg" />		
+		<img src="public/images/bgslider-3.jpg" />	
+	</div>
+
+	
+
+</body>
+</html>

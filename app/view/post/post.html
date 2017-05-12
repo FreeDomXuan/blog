@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+	<title>{$title}</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="description" content="问君随风-张宗轩的个人博客 这里是张宗轩的个人博客，时不时更新一些学习经历或者其他的文章，欢迎来访~" />
+	<meta name="keywords" content="张宗轩-个人博客,问君随风,zhangzongxuan.com,www.zhangzongxuan.com,张宗轩" />
+	<!-- CSS -->	
+	<link href='public/fonts/sansation.css' rel="stylesheet" type="text/css" />	
+	<link href="public/css/style.css" rel="stylesheet" type="text/css" />	
+	<link href="public/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
+	<link href="public/css/nivo-slider.css" rel="stylesheet" type="text/css" />
+	<link href="public/css/styler-farbtastic.css" rel="stylesheet" type="text/css" />
+
+	<!-- JAVASCRIPTS -->
+	<script type="text/javascript" src="public/js/jquery.min.js"></script>	
+	<script type="text/javascript" src="public/js/jquery-ui-1.8.17.custom.min.js"></script>			
+	<script type="text/javascript" src="public/fancybox/jquery.fancybox-1.3.4.pack.js"></script>	
+	<script type="text/javascript" src="public/js/jquery.nivo.slider.js"></script>			
+	<script type="text/javascript" src="public/js/jquery.bgslider.js"></script>
+	<script type="text/javascript" src="public/js/preloader.js"></script>
+	<script type="text/javascript" src="public/js/farbtastic.js"></script>
+	<script type="text/javascript" src="public/js/basic.js"></script>
+	<script type="text/javascript" src="public/js/styler.js"></script>
+	<script type="text/javascript" src="public/js/contact_form.js"></script>
+	
+</head>
+<body>
+	<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#06C&amp;text=分享到&amp;pophcol=3"></script>
+              
+	<!-- SITE WRAPPER -->
+	<div id="wrapper">
+	
+		<!-- PAGE WITH CONTENTS -->
+		<div id="page">
+			<div id="content">
+							
+				<h1>{$title}</h1>
+
+				<div class="hr"></div>
+				
+				<!-- LARGE IMAGE WITH FANCYBOX -->
+				<span class="large_image">
+					<a href="{$data['pic']}" rel="" class="fancybox">
+						<span class="imghover_large"></span>
+						<img src="{$data['pic']}" width="582" height="184" alt="" />
+					</a>
+				</span>
+				
+				<div class="vspace"></div>
+				
+				<!-- ARTICLE -->
+				<div id="markdown" width='400px'>
+					<textarea style="display:none;" name="test-editormd-markdown-doc">{{htmlspecialchars_decode($data['content'])}}
+			        </textarea>
+				</div>
+
+				<script src="public/editor/js/jquery.min.js"></script>
+				<script src="public/editor/lib/marked.min.js"></script>
+				<script src="public/editor/lib/prettify.min.js"></script>
+				<script src="public/editor/lib/raphael.min.js"></script>
+				<script src="public/editor/lib/underscore.min.js"></script>
+				<script src="public/editor/lib/sequence-diagram.min.js"></script>
+				<script src="public/editor/lib/flowchart.min.js"></script>
+				<script src="public/editor/lib/jquery.flowchart.min.js"></script>
+				<script src="public/editor/editormd.js"></script>
+				<script type="text/javascript">
+				    $(function() {
+				        var testEditormdView;
+				        testEditormdView = editormd.markdownToHTML("markdown", {
+				            htmlDecode      : "style,script,iframe",
+				            emoji           : true,
+				            taskList        : true,
+				            tex             : true,  // 默认不解析
+				            flowChart       : true,  // 默认不解析
+				            sequenceDiagram : true,  // 默认不解析
+				        });
+				    });
+				</script>
+				
+				
+				<div class="hr2"></div>
+			
+				<!-- POST INFO -->
+				<p class="blog-post-info">&nbsp;
+					<img src="public/images/icon-time.png" alt="" />&nbsp;{{date('M d,Y', $data['posttime'])}}&nbsp;&nbsp;
+					<img src="public/images/sep.gif" alt="" />&nbsp;&nbsp;
+					<img src="public/images/icon-category.png" alt="" />&nbsp;{$data['hits']} check&nbsp;&nbsp;
+					<img src="public/images/sep.gif" alt="" />&nbsp;&nbsp;
+					<img src="public/images/icon-comment.png" alt="" />&nbsp;{$data['reply']} Comment(s)&nbsp;&nbsp;
+					<a href="index.php">返回首页</a>
+				</p>
+
+				
+				
+				<div class="hr2"></div>
+			
+				<!-- COMMENTS -->
+				{if !empty($rep1)}
+				<h2>Comments</h2>				
+				
+				<ul id="comments-list">
+				
+				{(foreach) $rep1 as $k => $v}
+					<li>		
+						<div class="comments-avatar">
+							<img alt="" src="{$v['pic']}" class="avatar" height="60" width="60" />				
+						</div>			
+						<div class="comments-text">
+							{{date('Y-m-d H:i:s',$v['addtime'])}}
+							<br /><b>{$v['author']}</b><br />
+							{$v['content']}
+							<br /><br />
+							<a href="index.php?m=post&a=post&id={$v['bid']}&pid={$v['hid']}#respond">Reply</a>
+						</div>		
+					</li>
+					{if !empty($rep2)}
+					{(foreach) $rep2 as $key => $val}
+						{if $val['pid'] == $v['hid']}
+						<li>
+							<ul>
+								<li>
+									<div class="comments-avatar">
+										<img src="{$val['pic']}" height="60" width="60" />				
+									</div>
+									<div class="comments-text">
+										{{date('Y-m-d H:i:s',$val['addtime'])}}
+										<br /><b>{$val['author']}</b><br />
+										{$val['content']}
+										<br /><br />
+										<a href="index.php?m=post&a=post&id={$v['bid']}&pid={$val['pid']}#respond">Reply</a>
+									</div>		
+								</li>
+							</ul>
+						</li>
+						{/if}
+					{/(foreach)}
+					{/if}
+				{/(foreach)}
+				{/if}
+				</ul>				
+				
+				<div class="hr2"></div>
+
+				<!-- COMMENTS REPLY -->
+				<h2>Leave a Comment</h2>	
+
+				<form action="{$_SERVER['REQUEST_URI']}" method="post">
+					<input type="hidden" name="way" value="asd" />
+				<ul id="respond">
+					<li>
+						<input name="author" id="author" type="text" class="comment-textinput" value="" />
+						<label for="author">Name <span class="required">*</span></label>					
+					</li>
+					<li>
+						<input name="email" id="email" type="text" class="comment-textinput" value="" />
+						<label for="email">Email <span class="required">*</span> <span class="info">(will never be published)</span></label>					
+					</li>
+					<li>
+						<textarea rows="" cols="" class="comment-textarea" name="content"></textarea>
+					</li>
+					<li>
+						<input name="submit" type="submit" id="submit_btn" value="OK" />
+					</li>
+				</ul>
+				</form>
+				
+				
+				
+			
+			</div><!-- #content ends -->	
+		</div><!-- #page ends -->
+			
+				<!-- SIDEBAR -->
+		<div id="sidebar">	
+			<div id="sidebar-color"></div>		<!-- SIDEBAR COLOR LAYER -->
+			<div id="sidebar-border"></div>		<!-- SIDEBAR BORDER LAYER -->
+			<div id="sidebar-light"></div>		<!-- SIDEBAR RADIAL GRADIENT LIGHT LAYER -->
+			<div id="sidebar-texture"></div>	<!-- SIDEBAR TEXTURE LAYER -->
+			
+			<!-- SIDEBAR CONTENT LAYER -->
+			<div id="sidebar-content">	
+			
+				<!-- LOGO -->
+				<div id="logo">
+					<a href="index.php"><img src="public/images/logo.png" alt="" /></a>
+				</div>
+					
+				<!-- MENU -->
+				<ul id="menu">
+					<li><a href="index.php">HOME</a></li>
+					<li  class="current"><a href="index.php?m=blog1&a=blog1">BLOG</a>
+						<ul>
+							<li><a href="index.php?m=blog1&a=blog1">TECHNOLOGY</a></li>
+							<li><a href="index.php?m=blog2&a=blog2">OTHERS</a></li>
+						</ul>
+					</li>
+					<li><a href="index.php?m=portfolio3&a=portfolio3">PORTFOLIO</a>
+						<ul>
+							<li><a href="index.php?m=portfolio3&a=portfolio3">DYNAMIC</a></li>
+							<li><a href="index.php?m=portfolio2&a=portfolio2">TRAVEL</a></li>							
+						</ul>
+					</li>
+					<li><a href="index.php?m=gallery&a=gallery">GALLERY</a></li>
+				</ul>
+						
+			</div><!-- #sidebar-content ends -->	
+
+			<!-- COPYRIGHT TEXT -->
+			<p id="copyright"><a href="#">晋ICP备17000958号</a></p>
+			
+			
+		</div><!-- #sidebar ends -->	
+							
+	</div><!-- #wrapper ends -->
+
+	
+	<!-- BACKGROUND SLIDER -->
+	<div id="bg_slider">	
+		<img src="public/images/bgslider-1.jpg" alt="" />
+		<img src="public/images/bgslider-2.jpg" alt="" />
+		<img src="public/images/bgslider-3.jpg" alt="" />
+	</div>
+
+
+</body>
+</html>

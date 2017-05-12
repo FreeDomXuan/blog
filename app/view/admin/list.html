@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="public/css/pintuer.css">
+<link rel="stylesheet" href="public/css/admin.css">
+<script src="public/js/jquery.js"></script>
+<script src="public/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="index.php?m=admin&a=list" id="listform">
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 博文列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+        <li> <a class="button border-main icon-plus-square-o" href="index.php?m=admin&a=add"> 添加内容</a> </li>
+        <li><button type="submit" class="button border-red"  name="delarc" value="12123"><span class="icon-trash-o"></span> 批量删除</button></li>
+      </ul>
+    </div>
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="100" style="text-align:left; padding-left:20px;">ID</th>
+        <th>图片</th>
+        <th>名称</th>
+        <th>分类</th>
+        <th>简介</th>
+        <th width="10%">发布时间</th>
+        <th width="310">操作</th>
+      </tr>
+      <volist name="list" id="vo">
+
+      {(foreach) $data as $k => $v} 
+        <tr>
+          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$v['bid']}" />
+           {$v['bid']}</td>
+          <td width="10%"><img src="{$v['pic']}" alt="" width="70" height="50" /></td>
+          <td><a href="index.php?m=post&a=post&id={$v['bid']}">{$v['title']}</a></td>
+          <td><font color="#00CC99">
+          {if $v['type'] == 1}
+          OTHERS
+          {elseif $v['type'] == 0}
+          TECHNOLOGY
+          {/if}
+          </font></td>
+          <td>{$v['intro']}</td>
+          <td>{{date('Y-m-d',$v['posttime'])}}</td>
+          <td><div class="button-group"> <a class="button border-main" href="index.php?m=admin&a=changeArt&bid={$v['bid']}"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="index.php?m=admin&a=list&del={$v['bid']}"> <span class="icon-trash-o"> </span> 删除</a> </div></td>
+        </tr>
+   		 {/(foreach)}
+
+      <tr>
+        <td colspan="8">
+        <div class="pagelist"> 
+          <a href="{$pages['first']}">首页</a>
+          <a href="{$pages['prev']}">上一页</a> 
+          <a href="{$pages['next']}">下一页</a>
+          <a href="{$pages['end']}">尾页</a> 
+        </div></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+</body>
+</html>

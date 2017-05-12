@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="public/css/pintuer.css">
+<link rel="stylesheet" href="public/css/admin.css">
+<script src="public/js/jquery.js"></script>
+<script src="public/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="index.php?m=admin&a=piclist" id="listform">
+
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 说说列表</strong> 
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+        <li> <a class="button border-main icon-plus-square-o" href="index.php?m=admin&a=addpic"> 添加动态</a> </li>
+        <li>  <button type="submit" class="button border-red"  name="delpic" value="12123"><span class="icon-trash-o"></span> 批量删除</button></li>
+      </ul>
+    </div>
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="100" style="text-align:left; padding-left:20px;">ID</th>
+        <th>排序</th>
+        <th>配图</th>
+        <th>内容</th>
+        <th>分类</th>
+        <th>简介</th>
+        <th>发表时间</th>
+        <th width="310">操作</th>
+      </tr>
+      <volist name="list" id="vo">
+
+      {(foreach) $dat as $k => $v} 
+        <tr>
+          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$v['tid']}" />
+           {$v['tid']}</td>
+           <td>{$v['picorder']}</td>
+          <td width="10%"><img src="{$v['photo']}" alt="" width="70" height="50" /></td>
+          <td>{$v['says']}</td>
+          <td><font color="#00CC99">
+          {if $v['type'] == 1}
+          TRAVEL
+          {elseif $v['type'] == 0}
+          DYNAMIC
+          {/if}
+          </font></td>
+          <td>{$v['introduce']}</td>
+          <td>{{date('Y-m-d',$v['addtime'])}}</td>
+          <td><div class="button-group"><a class="button border-red" href="index.php?m=admin&a=piclist&del={$v['tid']}"> <span class="icon-trash-o"> </span> 删除</a> </div></td>
+        </tr>
+       {/(foreach)}
+
+      <tr>
+        <td colspan="8">
+        <div class="pagelist"> 
+          <a href="{$pa['first']}">首页</a>
+          <a href="{$pa['prev']}">上一页</a> 
+          <a href="{$pa['next']}">下一页</a>
+          <a href="{$pa['end']}">尾页</a> 
+        </div></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</form>
+
+</body>
+</html>

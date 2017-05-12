@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="public/css/pintuer.css">
+<link rel="stylesheet" href="public/css/admin.css">
+<script src="public/js/jquerys.js"></script>
+<script src="public/js/pintuer.js"></script>
+<link rel="stylesheet" href="public/editor/css/editormd.css" />
+  <script src="public/editor/js/jquery.min.js"></script>
+  <script src="public/editor/editormd.min.js"></script>
+  <script src="public/editor/js/jquery.min.js"></script>
+<script src="public/editor/lib/marked.min.js"></script>
+<script src="public/editor/lib/prettify.min.js"></script>
+<script src="public/editor/lib/raphael.min.js"></script>
+<script src="public/editor/lib/underscore.min.js"></script>
+<script src="public/editor/lib/sequence-diagram.min.js"></script>
+<script src="public/editor/lib/flowchart.min.js"></script>
+<script src="public/editor/lib/jquery.flowchart.min.js"></script>
+<script src="public/editor/editormd.js"></script>
+  <script type="text/javascript">
+      $(function() {
+          testEditor = editormd("test-editormd", {
+                    width   : "90%",
+                    height  : 640,
+                    syncScrolling : "single",
+                    path    : "public/editor/lib/"
+                });
+
+      });
+  </script>
+</head>
+<body>
+
+{if $_GET['a']=='add'}
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="index.php?m=admin&a=add" enctype='multipart/form-data'>  
+      <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />  
+      <input type="hidden" name="add" value="123"/>
+      <div class="form-group">
+        <div class="label">
+          <label>标题：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>图片：</label>
+        </div>
+        <div class="field">
+           <input type="file" name="icon" />
+        </div>
+      </div>     
+
+        <div class="form-group">
+          <div class="label">
+            <label>分类标题：</label>
+          </div>
+          <div class="field">
+            <select name="type" class="input w50">
+              <option value="1">请选择分类</option>
+              <option value="0">TECHNOLOGY</option>
+              <option value="1">OTHERS</option>
+            </select>
+            <div class="tips"></div>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <div class="label">
+          <label>描述：</label>
+        </div>
+        <div class="field">
+          <textarea class="input" name="note" style=" height:90px;"></textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>内容：</label>
+        </div>
+        <div class="field">
+           <div class="editormd" id="test-editormd">
+            <textarea style="display:none;"></textarea>
+          </div>
+          <div class="tips"></div>
+        </div>
+      </div>
+     
+      <div class="clear"></div>
+      
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{elseif $_GET['a']=='changeArt'}
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="{$_SERVER['REQUEST_URI']}" enctype='multipart/form-data'>  
+      <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />  
+      <input type="hidden" name="cha" value="123"/>
+      <div class="form-group">
+        <div class="label">
+          <label>标题：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="{$data['title']}" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label">
+          <label>描述：</label>
+        </div>
+        <div class="field">
+          <textarea class="input" name="note" style=" height:90px;">{$data['intro']}</textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>内容：</label>
+        </div>
+        <div class="field">
+           <div class="editormd" id="test-editormd">
+            <textarea style="display:none;">{{htmlspecialchars_decode($data['content'])}}</textarea>
+          </div>
+          <div class="tips"></div>
+        </div>
+      </div>
+     
+      <div class="clear"></div>
+      
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{/if}
+
+<script type="text/javascript">
+    $(function() {
+        var testEditormdView;
+        testEditormdView = editormd.markdownToHTML("markdown", {
+            htmlDecode      : "style,script,iframe",
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    });
+</script>
+
+</body></html>
